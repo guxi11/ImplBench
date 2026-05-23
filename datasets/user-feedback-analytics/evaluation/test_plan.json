@@ -1,0 +1,265 @@
+{
+  "version": "1.0",
+  "project": "user-feedback-analytics",
+  "description": "验收标准：用户反馈结果展示与处理功能",
+  "categories": [
+    {
+      "name": "API 验证",
+      "tests": [
+        {
+          "id": "api-01",
+          "metric": "GET /api/feedback - 基础请求",
+          "description": "1. Arrange: 启动开发服务器\n2. Act: 发送 GET /api/feedback 请求（无参数）\n3. Assert: 返回 200，body 包含 feedback 数组、total 数字、page 为 1、pageSize 为 10",
+          "score": 2
+        },
+        {
+          "id": "api-02",
+          "metric": "GET /api/feedback - status 筛选",
+          "description": "1. Arrange: 确保 mock 数据中存在 pending 状态的反馈\n2. Act: 发送 GET /api/feedback?status=pending\n3. Assert: 返回的 feedback 数组中每条记录 status 均为 pending",
+          "score": 2
+        },
+        {
+          "id": "api-03",
+          "metric": "GET /api/feedback - type 筛选",
+          "description": "1. Arrange: 确保 mock 数据中存在 bug 类型的反馈\n2. Act: 发送 GET /api/feedback?type=bug\n3. Assert: 返回的 feedback 数组中每条记录 type 均为 bug",
+          "score": 2
+        },
+        {
+          "id": "api-04",
+          "metric": "GET /api/feedback - 分页",
+          "description": "1. Arrange: mock 数据至少 15 条\n2. Act: 发送 GET /api/feedback?page=2&pageSize=5\n3. Assert: 返回的 feedback 数组长度 <= 5，page 为 2，total 为实际总数",
+          "score": 2
+        },
+        {
+          "id": "api-05",
+          "metric": "GET /api/feedback - 组合筛选",
+          "description": "1. Arrange: mock 数据覆盖多种 type 和 status 组合\n2. Act: 发送 GET /api/feedback?status=pending&type=bug\n3. Assert: 返回的每条记录同时满足 status=pending 且 type=bug",
+          "score": 2
+        },
+        {
+          "id": "api-06",
+          "metric": "GET /api/feedback/[id] - 有效 ID",
+          "description": "1. Arrange: 从 mock 数据中取一个已知 feedback id\n2. Act: 发送 GET /api/feedback/{id}\n3. Assert: 返回 200，body.feedback 包含完整字段且 id 匹配",
+          "score": 2
+        },
+        {
+          "id": "api-07",
+          "metric": "GET /api/feedback/[id] - 无效 ID",
+          "description": "1. Arrange: 准备一个不存在的 id（如 fb-999）\n2. Act: 发送 GET /api/feedback/fb-999\n3. Assert: 返回 404，body 包含 error 字段",
+          "score": 2
+        },
+        {
+          "id": "api-08",
+          "metric": "PATCH /api/feedback/[id] - 状态更新",
+          "description": "1. Arrange: 取一条 status 为 pending 的反馈 id\n2. Act: 发送 PATCH /api/feedback/{id}，body: {\"status\": \"in_progress\"}\n3. Assert: 返回 200，feedback.status 为 in_progress，updatedAt 已变更",
+          "score": 3
+        },
+        {
+          "id": "api-09",
+          "metric": "PATCH /api/feedback/[id] - 无效状态值",
+          "description": "1. Arrange: 取一个有效 feedback id\n2. Act: 发送 PATCH /api/feedback/{id}，body: {\"status\": \"invalid_value\"}\n3. Assert: 返回 400，body 包含 error: \"Invalid status\"",
+          "score": 2
+        },
+        {
+          "id": "api-10",
+          "metric": "PATCH /api/feedback/[id] - 不存在的 ID",
+          "description": "1. Arrange: 使用不存在的 id\n2. Act: 发送 PATCH /api/feedback/fb-999，body: {\"status\": \"resolved\"}\n3. Assert: 返回 404",
+          "score": 2
+        },
+        {
+          "id": "api-11",
+          "metric": "GET /api/users/[id]/feedback - 有反馈的用户",
+          "description": "1. Arrange: 确认某用户有关联反馈\n2. Act: 发送 GET /api/users/{userId}/feedback\n3. Assert: 返回 200，feedback 数组非空，每条 userId 匹配",
+          "score": 2
+        },
+        {
+          "id": "api-12",
+          "metric": "GET /api/users/[id]/feedback - 无反馈的用户",
+          "description": "1. Arrange: 使用一个无反馈的用户 id\n2. Act: 发送 GET /api/users/{userId}/feedback\n3. Assert: 返回 200，feedback 为空数组",
+          "score": 1
+        },
+        {
+          "id": "api-13",
+          "metric": "GET /api/stats - 包含反馈统计",
+          "description": "1. Arrange: 启动服务\n2. Act: 发送 GET /api/stats\n3. Assert: 返回体包含 feedbackPending（number）、feedbackTotal（number）、feedbackResolvedToday（number）字段",
+          "score": 2
+        }
+      ]
+    },
+    {
+      "name": "UI 验证",
+      "tests": [
+        {
+          "id": "ui-01",
+          "metric": "侧边栏 - Feedback 导航项",
+          "description": "1. Arrange: 访问首页\n2. Act: 检查侧边栏\n3. Assert: 存在 'Feedback' 导航链接，href 指向 /feedback",
+          "score": 1
+        },
+        {
+          "id": "ui-02",
+          "metric": "/feedback 页面 - 基础渲染",
+          "description": "1. Arrange: 访问 /feedback\n2. Act: 等待页面加载完成\n3. Assert: 页面包含标题 'Feedback'、筛选器（type 和 status 下拉）、表格",
+          "score": 2
+        },
+        {
+          "id": "ui-03",
+          "metric": "/feedback 页面 - 表格列",
+          "description": "1. Arrange: 访问 /feedback\n2. Act: 检查表格表头\n3. Assert: 包含标题、类型、状态、提交用户、创建时间列",
+          "score": 2
+        },
+        {
+          "id": "ui-04",
+          "metric": "/feedback 页面 - 状态标签颜色",
+          "description": "1. Arrange: 访问 /feedback\n2. Act: 检查不同状态的标签元素\n3. Assert: pending 为黄色系、in_progress 为蓝色系、resolved 为绿色系、dismissed 为灰色系（通过 Tailwind class 或 computed style 验证）",
+          "score": 2
+        },
+        {
+          "id": "ui-05",
+          "metric": "/feedback 页面 - 筛选交互",
+          "description": "1. Arrange: 访问 /feedback\n2. Act: 选择 status 筛选为 'pending'\n3. Assert: URL 更新为包含 ?status=pending，表格仅显示 pending 状态的反馈",
+          "score": 3
+        },
+        {
+          "id": "ui-06",
+          "metric": "/feedback 页面 - URL 恢复筛选状态",
+          "description": "1. Arrange: 直接访问 /feedback?status=resolved&type=bug\n2. Act: 等待页面加载\n3. Assert: 筛选器下拉值分别为 resolved 和 bug，表格数据已筛选",
+          "score": 3
+        },
+        {
+          "id": "ui-07",
+          "metric": "/feedback 页面 - 分页控件",
+          "description": "1. Arrange: 访问 /feedback（数据 > 10 条）\n2. Act: 检查页面底部\n3. Assert: 存在分页控件，显示当前页码，上一页/下一页按钮",
+          "score": 2
+        },
+        {
+          "id": "ui-08",
+          "metric": "/feedback 页面 - 加载状态",
+          "description": "1. Arrange: 访问 /feedback\n2. Act: 观察初始加载\n3. Assert: 数据加载期间显示带 data-testid='loading' 的元素",
+          "score": 1
+        },
+        {
+          "id": "ui-09",
+          "metric": "/feedback 页面 - 空状态",
+          "description": "1. Arrange: 访问 /feedback?status=resolved&type=bug（确保该组合无数据）\n2. Act: 等待加载完成\n3. Assert: 显示带 data-testid='empty-state' 的元素，文本含 'No feedback found'",
+          "score": 2
+        },
+        {
+          "id": "ui-10",
+          "metric": "/feedback/[id] 页面 - 详情渲染",
+          "description": "1. Arrange: 访问 /feedback/{valid-id}\n2. Act: 等待加载\n3. Assert: 显示标题、状态标签、类型、提交用户、创建时间、内容正文",
+          "score": 2
+        },
+        {
+          "id": "ui-11",
+          "metric": "/feedback/[id] 页面 - 状态变更按钮",
+          "description": "1. Arrange: 访问一条 pending 状态的反馈详情\n2. Act: 检查操作区\n3. Assert: 显示 'Start Processing'（→in_progress）和 'Dismiss'（→dismissed）按钮",
+          "score": 2
+        },
+        {
+          "id": "ui-12",
+          "metric": "/feedback/[id] 页面 - 状态变更交互",
+          "description": "1. Arrange: 访问 pending 反馈详情\n2. Act: 点击 'Start Processing' 按钮\n3. Assert: 状态标签更新为 in_progress，无页面跳转",
+          "score": 3
+        },
+        {
+          "id": "ui-13",
+          "metric": "/feedback/[id] 页面 - 返回按钮",
+          "description": "1. Arrange: 访问反馈详情页\n2. Act: 点击返回按钮\n3. Assert: 跳转回 /feedback 页面",
+          "score": 1
+        },
+        {
+          "id": "ui-14",
+          "metric": "Dashboard - 反馈统计卡片",
+          "description": "1. Arrange: 访问首页 /\n2. Act: 检查统计卡片区域\n3. Assert: 存在 'Pending Feedback' 和 'Total Feedback' 卡片，数值为数字",
+          "score": 2
+        },
+        {
+          "id": "ui-15",
+          "metric": "Users 页面 - Feedback 列",
+          "description": "1. Arrange: 访问 /users\n2. Act: 检查用户表格\n3. Assert: 表格包含 'Feedback' 列，每行显示数字",
+          "score": 2
+        },
+        {
+          "id": "ui-16",
+          "metric": "Users 页面 - Feedback 数量链接",
+          "description": "1. Arrange: 访问 /users\n2. Act: 点击某用户 Feedback 列的数字\n3. Assert: 跳转到 /feedback?userId={该用户id}",
+          "score": 2
+        }
+      ]
+    },
+    {
+      "name": "集成验证",
+      "tests": [
+        {
+          "id": "int-01",
+          "metric": "反馈列表→详情页跳转",
+          "description": "1. Arrange: 访问 /feedback\n2. Act: 点击列表中某一行\n3. Assert: 跳转到 /feedback/{对应id}，详情页数据正确",
+          "score": 2
+        },
+        {
+          "id": "int-02",
+          "metric": "详情页→用户关联",
+          "description": "1. Arrange: 访问反馈详情页\n2. Act: 点击提交用户名称\n3. Assert: 可跳转到用户相关页面或显示用户信息",
+          "score": 2
+        },
+        {
+          "id": "int-03",
+          "metric": "Dashboard 统计数据一致性",
+          "description": "1. Arrange: 分别请求 GET /api/stats 和 GET /api/feedback?status=pending\n2. Act: 对比数据\n3. Assert: stats.feedbackPending 等于 pending 反馈的 total 数",
+          "score": 2
+        },
+        {
+          "id": "int-04",
+          "metric": "状态变更后列表同步",
+          "description": "1. Arrange: 访问反馈详情页，记录当前状态\n2. Act: 变更状态后返回列表页\n3. Assert: 列表中该条反馈状态已更新",
+          "score": 3
+        },
+        {
+          "id": "int-05",
+          "metric": "用户反馈数与实际数据一致",
+          "description": "1. Arrange: 请求 GET /api/users/{id}/feedback 获取某用户反馈列表\n2. Act: 访问 /users 页面\n3. Assert: 该用户行的 Feedback 列数字等于 API 返回的 feedback 数组长度",
+          "score": 2
+        }
+      ]
+    },
+    {
+      "name": "测试代码验证",
+      "tests": [
+        {
+          "id": "test-01",
+          "metric": "测试文件存在",
+          "description": "1. Arrange: 检查项目结构\n2. Act: 查找 src/__tests__/ 目录\n3. Assert: 存在 API 相关测试文件",
+          "score": 1
+        },
+        {
+          "id": "test-02",
+          "metric": "测试覆盖 GET /api/feedback",
+          "description": "1. Arrange: 阅读测试代码\n2. Act: 检查是否包含对 /api/feedback 的测试用例\n3. Assert: 至少包含无参请求、status 筛选、type 筛选、分页 4 个测试用例",
+          "score": 3
+        },
+        {
+          "id": "test-03",
+          "metric": "测试覆盖 PATCH /api/feedback/[id]",
+          "description": "1. Arrange: 阅读测试代码\n2. Act: 检查 PATCH 相关测试\n3. Assert: 覆盖正常更新、无效 id(404)、无效 status(400) 三种场景",
+          "score": 3
+        },
+        {
+          "id": "test-04",
+          "metric": "测试可执行",
+          "description": "1. Arrange: 安装依赖\n2. Act: 运行测试命令\n3. Assert: 测试全部通过，无报错",
+          "score": 3
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "total_points": 72,
+    "pass_threshold": 0.7,
+    "categories_weight": {
+      "API 验证": 0.3,
+      "UI 验证": 0.35,
+      "集成验证": 0.2,
+      "测试代码验证": 0.15
+    }
+  }
+}

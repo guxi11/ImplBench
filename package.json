@@ -1,0 +1,11 @@
+{
+  "name": "impl-bench",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "init": "node scripts/init-strategy.mjs"
+  },
+  "dependencies": {
+    "tailrec": "file:../tailrec"
+  }
+}
