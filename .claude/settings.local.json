@@ -3,7 +3,11 @@
     "allow": [
       "WebSearch",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:arxiv.org)"
+      "WebFetch(domain:arxiv.org)",
+      "mcp__tailrec__t_start",
+      "Bash(mkdir -p /Users/zyy/develop/Guxi11/ImplBench/datasets/user-feedback-analytics/src-tailrec/src/app/api/feedback/\\\\[id\\\\])",
+      "Bash(mkdir -p /Users/zyy/develop/Guxi11/ImplBench/datasets/user-feedback-analytics/src-tailrec/src/app/api/users/\\\\[id\\\\]/feedback)",
+      "Bash(npm run *)"
     ]
   }
 }
