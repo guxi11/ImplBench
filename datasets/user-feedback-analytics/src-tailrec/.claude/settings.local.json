@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__tailrec__t_plan",
+      "mcp__tailrec__t_start",
+      "mcp__tailrec__t_resume",
+      "mcp__tailrec__t_tasks"
+    ]
+  }
+}
