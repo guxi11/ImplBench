@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { User } from "@/types";
 
 interface UserTableProps {
   users: User[];
+  feedbackCounts?: Record<string, number>;
 }
 
 const statusStyle: Record<User["status"], string> = {
@@ -10,7 +12,7 @@ const statusStyle: Record<User["status"], string> = {
   suspended: "bg-red-100 text-red-700",
 };
 
-export function UserTable({ users }: UserTableProps) {
+export function UserTable({ users, feedbackCounts }: UserTableProps) {
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
       <table className="w-full text-sm">
@@ -20,6 +22,7 @@ export function UserTable({ users }: UserTableProps) {
             <th className="text-left px-6 py-3 font-medium">Email</th>
             <th className="text-left px-6 py-3 font-medium">Status</th>
             <th className="text-left px-6 py-3 font-medium">Registered</th>
+            <th className="text-left px-6 py-3 font-medium">Feedback</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100">
@@ -36,6 +39,14 @@ export function UserTable({ users }: UserTableProps) {
               </td>
               <td className="px-6 py-4 text-gray-500">
                 {new Date(user.registeredAt).toLocaleDateString()}
+              </td>
+              <td className="px-6 py-4">
+                <Link
+                  href={`/feedback?userId=${user.id}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {feedbackCounts?.[user.id] || 0}
+                </Link>
               </td>
             </tr>
           ))}

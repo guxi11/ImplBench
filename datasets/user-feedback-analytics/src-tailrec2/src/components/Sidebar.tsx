@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { href: "/", label: "Dashboard", icon: "📊" },
   { href: "/users", label: "Users", icon: "👥" },
+  { href: "/feedback", label: "Feedback", icon: "💬" },
 ];
 
 export function Sidebar() {
@@ -22,9 +23,13 @@ export function Sidebar() {
             key={href}
             href={href}
             className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors ${
-              pathname === href
-                ? "bg-blue-600 text-white"
-                : "text-gray-300 hover:bg-gray-800"
+              href === "/"
+                ? pathname === href
+                  ? "bg-blue-600 text-white"
+                  : "text-gray-300 hover:bg-gray-800"
+                : pathname.startsWith(href)
+                  ? "bg-blue-600 text-white"
+                  : "text-gray-300 hover:bg-gray-800"
             }`}
           >
             <span>{icon}</span>

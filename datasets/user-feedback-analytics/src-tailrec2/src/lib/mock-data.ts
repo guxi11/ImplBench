@@ -1,4 +1,4 @@
-import { User, Stats } from "@/types";
+import { User, Feedback, Stats } from "@/types";
 
 export const mockUsers: User[] = [
   {
@@ -93,9 +93,31 @@ export const mockUsers: User[] = [
   },
 ];
 
+export const mockFeedback: Feedback[] = [
+  { id: "fb-001", userId: "u-001", type: "bug", status: "resolved", title: "登录页面闪退", description: "在iOS设备上点击登录按钮后页面会闪退，需要重新打开应用", createdAt: "2026-04-28T09:15:00Z", updatedAt: "2026-05-25T10:30:00Z" },
+  { id: "fb-002", userId: "u-002", type: "feature", status: "pending", title: "希望增加深色模式", description: "长时间使用眼睛容易疲劳，建议增加深色模式切换功能", createdAt: "2026-05-01T14:20:00Z", updatedAt: "2026-05-01T14:20:00Z" },
+  { id: "fb-003", userId: "u-003", type: "improvement", status: "in-progress", title: "搜索结果排序优化", description: "当前搜索结果按时间排序不太合理，建议增加相关度排序选项", createdAt: "2026-05-03T11:00:00Z", updatedAt: "2026-05-18T09:00:00Z" },
+  { id: "fb-004", userId: "u-004", type: "bug", status: "pending", title: "消息通知延迟严重", description: "收到新消息后通知延迟5-10分钟才弹出，影响沟通效率", createdAt: "2026-05-05T16:45:00Z", updatedAt: "2026-05-05T16:45:00Z" },
+  { id: "fb-005", userId: "u-005", type: "question", status: "resolved", title: "如何修改绑定手机号", description: "在设置里找不到修改手机号的入口，请问具体在哪里操作", createdAt: "2026-05-07T08:30:00Z", updatedAt: "2026-05-25T11:00:00Z" },
+  { id: "fb-006", userId: "u-001", type: "feature", status: "pending", title: "支持导出数据为Excel", description: "需要将用户数据导出为Excel格式以便进行线下分析", createdAt: "2026-05-09T10:10:00Z", updatedAt: "2026-05-09T10:10:00Z" },
+  { id: "fb-007", userId: "u-006", type: "bug", status: "resolved", title: "图片上传失败", description: "上传超过5MB的图片时报错，提示网络异常但实际网络正常", createdAt: "2026-05-10T13:25:00Z", updatedAt: "2026-05-15T14:00:00Z" },
+  { id: "fb-008", userId: "u-007", type: "improvement", status: "pending", title: "表格列宽自适应", description: "数据表格在窄屏幕上列宽挤压严重，希望支持横向滚动", createdAt: "2026-05-12T09:50:00Z", updatedAt: "2026-05-12T09:50:00Z" },
+  { id: "fb-009", userId: "u-002", type: "bug", status: "in-progress", title: "筛选条件重置异常", description: "切换页面后返回，之前设置的筛选条件全部丢失", createdAt: "2026-05-14T15:30:00Z", updatedAt: "2026-05-20T10:15:00Z" },
+  { id: "fb-010", userId: "u-003", type: "question", status: "dismissed", title: "是否支持批量删除", description: "有大量历史数据需要清理，请问是否支持批量选择删除", createdAt: "2026-05-15T11:40:00Z", updatedAt: "2026-05-17T09:00:00Z" },
+  { id: "fb-011", userId: "u-004", type: "feature", status: "pending", title: "增加数据可视化图表", description: "希望在仪表盘中增加折线图和饼图展示用户增长趋势", createdAt: "2026-05-17T08:00:00Z", updatedAt: "2026-05-17T08:00:00Z" },
+  { id: "fb-012", userId: "u-006", type: "improvement", status: "resolved", title: "优化页面加载速度", description: "首页加载需要3秒以上，用户体验较差，建议优化资源加载", createdAt: "2026-05-19T14:15:00Z", updatedAt: "2026-05-23T16:00:00Z" },
+  { id: "fb-013", userId: "u-007", type: "bug", status: "pending", title: "日期选择器无法选择今天", description: "反馈表单中的日期选择器最大只能选到昨天", createdAt: "2026-05-20T10:00:00Z", updatedAt: "2026-05-20T10:00:00Z" },
+  { id: "fb-014", userId: "u-005", type: "feature", status: "dismissed", title: "支持第三方账号登录", description: "希望支持微信和支付宝快捷登录，减少注册步骤", createdAt: "2026-05-22T07:45:00Z", updatedAt: "2026-05-24T09:30:00Z" },
+  { id: "fb-015", userId: "u-001", type: "question", status: "pending", title: "API接口调用频率限制", description: "请问当前API的调用频率限制是多少，是否可以申请提升", createdAt: "2026-05-23T16:20:00Z", updatedAt: "2026-05-23T16:20:00Z" },
+  { id: "fb-016", userId: "u-002", type: "bug", status: "pending", title: "移动端样式错乱", description: "在安卓手机浏览器打开后侧边栏覆盖了主内容区域", createdAt: "2026-05-24T12:00:00Z", updatedAt: "2026-05-24T12:00:00Z" },
+];
+
 export const mockStats: Stats = {
   totalUsers: 1284,
   activeUsers: 967,
   newUsersToday: 12,
   newUsersThisWeek: 84,
+  feedbackPending: mockFeedback.filter((f) => f.status === "pending").length,
+  feedbackTotal: mockFeedback.length,
+  feedbackResolvedToday: 2,
 };

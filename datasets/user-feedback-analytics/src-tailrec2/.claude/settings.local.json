@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__tailrec__t_start",
+      "mcp__tailrec__t_tasks",
+      "mcp__tailrec__reassemble",
+      "Bash(npx tsc *)"
+    ]
+  }
+}
