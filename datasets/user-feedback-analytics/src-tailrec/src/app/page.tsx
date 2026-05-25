@@ -1,7 +1,10 @@
 import { StatCard } from "@/components/StatCard";
-import { mockStats } from "@/lib/mock-data";
+import { mockStats, mockFeedback } from "@/lib/mock-data";
 
 export default function DashboardPage() {
+  const feedbackPending = mockFeedback.filter((f) => f.status === "pending").length;
+  const feedbackTotal = mockFeedback.length;
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
@@ -22,6 +25,8 @@ export default function DashboardPage() {
           value={mockStats.newUsersThisWeek}
           icon="📈"
         />
+        <StatCard title="Pending Feedback" value={feedbackPending} icon="⏳" />
+        <StatCard title="Total Feedback" value={feedbackTotal} icon="💬" />
       </div>
     </div>
   );

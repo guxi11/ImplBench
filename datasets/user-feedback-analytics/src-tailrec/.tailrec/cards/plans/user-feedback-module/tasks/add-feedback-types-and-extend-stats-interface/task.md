@@ -1,10 +1,11 @@
 ---
-title: "Add Feedback types and extend Stats interface"
-status: pending
-next: "add-mockfeedback-data-to-mock-data-ts"
+title: Add Feedback types and extend Stats interface
+status: done
+next: add-mockfeedback-data-to-mock-data-ts
 head: true
 type: task
-description: "Task: Add Feedback types and extend Stats interface (plan: user-feedback-module)"
+description: "Task: Add Feedback types and extend Stats interface (plan:
+  user-feedback-module)"
 ---
 
 # Add Feedback types and extend Stats interface

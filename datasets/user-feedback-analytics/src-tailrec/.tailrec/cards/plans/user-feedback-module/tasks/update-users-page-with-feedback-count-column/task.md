@@ -1,9 +1,10 @@
 ---
-title: "Update Users page with feedback count column"
-status: pending
-next: "add-feedback-nav-item-to-sidebar"
+title: Update Users page with feedback count column
+status: done
+next: add-feedback-nav-item-to-sidebar
 type: task
-description: "Task: Update Users page with feedback count column (plan: user-feedback-module)"
+description: "Task: Update Users page with feedback count column (plan:
+  user-feedback-module)"
 ---
 
 # Update Users page with feedback count column

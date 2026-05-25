@@ -1,7 +1,7 @@
 ---
-title: "Add mockFeedback data to mock-data.ts"
-status: pending
-next: "implement-get-api-feedback-with-filtering-and-pagination"
+title: Add mockFeedback data to mock-data.ts
+status: done
+next: implement-get-api-feedback-with-filtering-and-pagination
 type: task
 description: "Task: Add mockFeedback data to mock-data.ts (plan: user-feedback-module)"
 ---

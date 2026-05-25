@@ -1,7 +1,7 @@
 ---
-title: "Extend GET /api/stats with feedback fields"
-status: pending
-next: "create-feedbacklist-page-at-feedback"
+title: Extend GET /api/stats with feedback fields
+status: done
+next: create-feedbacklist-page-at-feedback
 type: task
 description: "Task: Extend GET /api/stats with feedback fields (plan: user-feedback-module)"
 ---

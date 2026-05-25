@@ -1,7 +1,7 @@
 ---
-title: "Create FeedbackList page at /feedback"
-status: pending
-next: "create-feedbackdetail-page-at-feedback-id"
+title: Create FeedbackList page at /feedback
+status: done
+next: create-feedbackdetail-page-at-feedback-id
 type: task
 description: "Task: Create FeedbackList page at /feedback (plan: user-feedback-module)"
 ---

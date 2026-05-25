@@ -1,9 +1,10 @@
 ---
-title: "Create FeedbackDetail page at /feedback/[id]"
-status: pending
-next: "update-dashboard-page-with-feedback-stat-cards"
+title: Create FeedbackDetail page at /feedback/[id]
+status: done
+next: update-dashboard-page-with-feedback-stat-cards
 type: task
-description: "Task: Create FeedbackDetail page at /feedback/[id] (plan: user-feedback-module)"
+description: "Task: Create FeedbackDetail page at /feedback/[id] (plan:
+  user-feedback-module)"
 ---
 
 # Create FeedbackDetail page at /feedback/[id]

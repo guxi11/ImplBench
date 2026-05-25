@@ -1,9 +1,10 @@
 ---
-title: "Implement GET /api/feedback with filtering and pagination"
-status: pending
-next: "implement-get-and-patch-api-feedback-id"
+title: Implement GET /api/feedback with filtering and pagination
+status: done
+next: implement-get-and-patch-api-feedback-id
 type: task
-description: "Task: Implement GET /api/feedback with filtering and pagination (plan: user-feedback-module)"
+description: "Task: Implement GET /api/feedback with filtering and pagination
+  (plan: user-feedback-module)"
 ---
 
 # Implement GET /api/feedback with filtering and pagination

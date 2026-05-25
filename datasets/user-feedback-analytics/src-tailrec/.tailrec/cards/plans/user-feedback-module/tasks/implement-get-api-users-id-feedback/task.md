@@ -1,7 +1,7 @@
 ---
-title: "Implement GET /api/users/[id]/feedback"
-status: pending
-next: "extend-get-api-stats-with-feedback-fields"
+title: Implement GET /api/users/[id]/feedback
+status: done
+next: extend-get-api-stats-with-feedback-fields
 type: task
 description: "Task: Implement GET /api/users/[id]/feedback (plan: user-feedback-module)"
 ---

@@ -1,9 +1,10 @@
 ---
-title: "Update Dashboard page with feedback stat cards"
-status: pending
-next: "update-users-page-with-feedback-count-column"
+title: Update Dashboard page with feedback stat cards
+status: done
+next: update-users-page-with-feedback-count-column
 type: task
-description: "Task: Update Dashboard page with feedback stat cards (plan: user-feedback-module)"
+description: "Task: Update Dashboard page with feedback stat cards (plan:
+  user-feedback-module)"
 ---
 
 # Update Dashboard page with feedback stat cards

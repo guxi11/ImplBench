@@ -1,6 +1,19 @@
 import { NextResponse } from "next/server";
-import { mockStats } from "@/lib/mock-data";
+import { mockStats, mockFeedback } from "@/lib/mock-data";
 
 export async function GET() {
-  return NextResponse.json(mockStats);
+  const today = new Date().toISOString().slice(0, 10);
+
+  const feedbackPending = mockFeedback.filter((f) => f.status === "pending").length;
+  const feedbackTotal = mockFeedback.length;
+  const feedbackResolvedToday = mockFeedback.filter(
+    (f) => f.status === "resolved" && f.updatedAt.slice(0, 10) === today
+  ).length;
+
+  return NextResponse.json({
+    ...mockStats,
+    feedbackPending,
+    feedbackTotal,
+    feedbackResolvedToday,
+  });
 }

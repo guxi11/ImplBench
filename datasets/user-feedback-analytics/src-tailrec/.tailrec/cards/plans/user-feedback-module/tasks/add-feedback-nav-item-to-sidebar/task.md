@@ -1,6 +1,6 @@
 ---
-title: "Add Feedback nav item to Sidebar"
-status: pending
+title: Add Feedback nav item to Sidebar
+status: done
 next: null
 type: task
 description: "Task: Add Feedback nav item to Sidebar (plan: user-feedback-module)"

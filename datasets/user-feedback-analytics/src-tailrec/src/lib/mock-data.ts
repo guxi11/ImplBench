@@ -1,4 +1,4 @@
-import { User, Stats } from "@/types";
+import { User, Stats, Feedback } from "@/types";
 
 export const mockUsers: User[] = [
   {
@@ -93,9 +93,31 @@ export const mockUsers: User[] = [
   },
 ];
 
+export const mockFeedback: Feedback[] = [
+  { id: "fb-001", userId: "u-001", type: "bug", title: "页面加载白屏", content: "首页在Safari浏览器下偶尔出现白屏，刷新后恢复。", status: "resolved", createdAt: "2026-04-26T09:00:00Z", updatedAt: "2026-05-25T10:00:00Z" },
+  { id: "fb-002", userId: "u-002", type: "feature_request", title: "支持深色模式", content: "希望能增加深色模式切换功能，夜间使用更舒适。", status: "pending", createdAt: "2026-04-28T14:30:00Z", updatedAt: "2026-04-28T14:30:00Z" },
+  { id: "fb-003", userId: "u-003", type: "complaint", title: "响应速度太慢", content: "最近一周系统加载速度明显变慢，严重影响使用体验。", status: "in_progress", createdAt: "2026-05-01T11:20:00Z", updatedAt: "2026-05-10T08:00:00Z" },
+  { id: "fb-004", userId: "u-004", type: "suggestion", title: "增加批量导出功能", content: "建议在用户列表页增加批量导出CSV的功能。", status: "pending", createdAt: "2026-05-03T16:45:00Z", updatedAt: "2026-05-03T16:45:00Z" },
+  { id: "fb-005", userId: "u-005", type: "bug", title: "筛选器重置失效", content: "点击重置按钮后筛选条件未清空，需手动逐个清除。", status: "pending", createdAt: "2026-05-05T08:10:00Z", updatedAt: "2026-05-05T08:10:00Z" },
+  { id: "fb-006", userId: "u-006", type: "feature_request", title: "支持多语言切换", content: "希望系统能支持英文界面，方便国际团队使用。", status: "dismissed", createdAt: "2026-05-06T13:00:00Z", updatedAt: "2026-05-08T09:30:00Z" },
+  { id: "fb-007", userId: "u-001", type: "complaint", title: "通知邮件过多", content: "每天收到大量系统通知邮件，希望能自定义通知频率。", status: "resolved", createdAt: "2026-05-08T10:15:00Z", updatedAt: "2026-05-15T14:00:00Z" },
+  { id: "fb-008", userId: "u-002", type: "bug", title: "头像上传失败", content: "上传超过2MB的图片时直接报错，没有压缩提示。", status: "in_progress", createdAt: "2026-05-10T09:30:00Z", updatedAt: "2026-05-20T11:00:00Z" },
+  { id: "fb-009", userId: "u-003", type: "suggestion", title: "优化搜索体验", content: "搜索结果希望能高亮关键词，并支持模糊匹配。", status: "pending", createdAt: "2026-05-12T15:40:00Z", updatedAt: "2026-05-12T15:40:00Z" },
+  { id: "fb-010", userId: "u-004", type: "feature_request", title: "添加数据看板", content: "希望增加可自定义的数据看板，方便管理层查看关键指标。", status: "in_progress", createdAt: "2026-05-14T07:50:00Z", updatedAt: "2026-05-22T16:00:00Z" },
+  { id: "fb-011", userId: "u-005", type: "bug", title: "分页跳转错误", content: "在第三页点击下一页会跳回第一页。", status: "resolved", createdAt: "2026-05-16T12:00:00Z", updatedAt: "2026-05-25T09:00:00Z" },
+  { id: "fb-012", userId: "u-006", type: "complaint", title: "移动端适配差", content: "手机端表格显示不全，横向滚动体验很差。", status: "pending", createdAt: "2026-05-18T18:20:00Z", updatedAt: "2026-05-18T18:20:00Z" },
+  { id: "fb-013", userId: "u-001", type: "suggestion", title: "增加操作日志", content: "建议记录用户的关键操作日志，方便审计追踪。", status: "dismissed", createdAt: "2026-05-20T10:30:00Z", updatedAt: "2026-05-21T09:00:00Z" },
+  { id: "fb-014", userId: "u-003", type: "feature_request", title: "支持webhook通知", content: "希望能配置webhook，将系统事件推送到企业微信。", status: "pending", createdAt: "2026-05-22T14:00:00Z", updatedAt: "2026-05-22T14:00:00Z" },
+  { id: "fb-015", userId: "u-004", type: "bug", title: "日期选择器时区问题", content: "选择日期后显示的时间与实际差8小时。", status: "pending", createdAt: "2026-05-24T08:45:00Z", updatedAt: "2026-05-24T08:45:00Z" },
+  { id: "fb-016", userId: "u-002", type: "suggestion", title: "支持快捷键操作", content: "希望能用键盘快捷键完成常用操作，提高效率。", status: "pending", createdAt: "2026-05-25T07:00:00Z", updatedAt: "2026-05-25T07:00:00Z" },
+];
+
 export const mockStats: Stats = {
   totalUsers: 1284,
   activeUsers: 967,
   newUsersToday: 12,
   newUsersThisWeek: 84,
+  feedbackPending: 8,
+  feedbackTotal: 16,
+  feedbackResolvedToday: 2,
 };
